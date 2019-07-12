@@ -16,5 +16,8 @@ pip install --yes json pandas==0.24.2
 git clone https://github.com/BoseCorp/py-googletrans.git
 cd /home/nbuser/py-googletrans
 python setup.py install
-    
+
+conda clean --all -f --yes
+conda remove --quiet --yes --force qt pyqt
+
 source /home/nbuser/anaconda3_420/bin/deactivate
