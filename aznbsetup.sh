@@ -7,7 +7,7 @@ source /home/nbuser/anaconda3_420/bin/activate
 conda update -c conda-forge conda
 conda install -y -c conda-forge folium=0.9.1 jinja2=2.10* 
 conda install -y numpy matplotlib geopandas=0.5.0
-conda install -y -c conda-forge pysal seaborn=0.9.0 fuzzywuzzy
+conda install -y -c conda-forge pysal seaborn fuzzywuzzy
 conda install -y -c plotly plotly_express
 
 pip install --upgrade pip
