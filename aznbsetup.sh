@@ -11,7 +11,7 @@ conda install -y -c conda-forge pysal seaborn fuzzywuzzy
 conda install -y -c plotly plotly_express
 
 pip install --upgrade pip
-pip install --yes json pandas==0.24.2
+pip install -y json pandas==0.24.2
 
 git clone https://github.com/BoseCorp/py-googletrans.git
 cd /home/nbuser/py-googletrans
