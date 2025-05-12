@@ -4,17 +4,17 @@ FROM jupyter/base-notebook
 # Set the working directory inside the container
 WORKDIR /home/work
 
-# Copy the environment file to install dependencies
-COPY environment.yml .
-
-# Install dependencies via conda
-RUN conda env update --file environment.yml && conda clean --all -y
-
-# Copy the entire project folder into the container
+# Copy the project files, including aznbsetup.sh
 COPY . .
+
+# Ensure the script has execution permissions
+RUN chmod +x aznbsetup.sh
+
+# Install dependencies using the aznbsetup.sh script
+RUN bash aznbsetup.sh
 
 # Expose the default Jupyter Notebook port
 EXPOSE 8888
 
-# Start Jupyter Notebook
+# Start Jupyter Notebook without a token or password
 CMD ["start-notebook.sh", "--NotebookApp.token=''", "--NotebookApp.password=''"]
