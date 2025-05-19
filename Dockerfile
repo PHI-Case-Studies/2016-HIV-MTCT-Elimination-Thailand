@@ -4,14 +4,17 @@ FROM jupyter/base-notebook
 # Set the working directory inside the container
 WORKDIR /home/work
 
-# Copy the project files, including aznbsetup.sh
-COPY . .
+# Use root to install git
+USER root
+RUN apt-get update && apt-get install -y git && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Ensure the script has execution permissions
-RUN chmod +x aznbsetup.sh
+# Copy the project files, including aznbsetup.sh
+COPY --chmod=777 ./aznbsetup.sh .
 
 # Install dependencies using the aznbsetup.sh script
-RUN bash aznbsetup.sh
+RUN ./aznbsetup.sh
+
+COPY . .
 
 # Expose the default Jupyter Notebook port
 EXPOSE 8888
