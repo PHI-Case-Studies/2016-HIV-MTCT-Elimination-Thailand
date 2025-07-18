@@ -1,22 +1,37 @@
 #!/bin/bash
 
-# Activate environment
-source /home/nbuser/anaconda3_420/bin/activate
+# Initialize conda
+source /opt/conda/etc/profile.d/conda.sh
 
-# Install packages
-conda update -c conda-forge conda
-conda install -y -c conda-forge folium=0.9.1 jinja2=2.10* 
-conda install -y numpy matplotlib=3.0* geopandas=0.5.0 pandas=0.24*
-conda install -y -c conda-forge seaborn fuzzywuzzy
-conda install -y -c plotly plotly_express
+# Activate base environment
+conda activate base
 
-pip install --upgrade pip
+# Install packages with mamba
+mamba install -y -c conda-forge \
+    git \
+    ipywidgets \
+    ipython \
+    ipykernel \
+    jupyterlab \
+    nodejs \
+    folium=0.14.0 \
+    jinja2=3.1.2 \
+    numpy \
+    sqlite \
+    matplotlib=3.7 \
+    geopandas=0.13 \
+    pandas=2.2 \
+    seaborn \
+    fiona \
+    pyproj \
+    fuzzywuzzy \
+    plotly \
+    pip \
+    pysal
 
-git clone https://github.com/BoseCorp/py-googletrans.git
-cd /home/nbuser/py-googletrans
-python setup.py install
+# Install googletrans fork explicitly
+/opt/conda/bin/pip install googletrans
 
-conda clean --all -f --yes
-conda remove --quiet --yes --force qt pyqt
+# Cleanup
+conda clean --all --yes
 
-source /home/nbuser/anaconda3_420/bin/deactivate
